@@ -40,33 +40,33 @@ class GameManager(BotManager, Commands):
             self.standard_start(q)
             q.window_bring_to_back(q.window_hwnd)
 
-        # for q1 in u_list:
-        #     q1.window_bring_to_front(q1.window_hwnd)
-        #     q1.type.reset_interface(q1.window_hwnd, product)
-        #     q1.window_bring_to_back(q1.window_hwnd)
-        #
-        # repeat_counter, max_repeat = 0, 0
-        # for q2 in u_list:
-        #     if q2.repeat_needed > max_repeat:
-        #         max_repeat = q2.repeat_needed
-        #         self.print_info(f'{q2.repeat_needed} is bigger')
-        # self.print_info(f'Repeat counter: {max_repeat}')
-        #
-        # for re in range(max_repeat):
-        #     for p in u_list:
-        #         if p.repeat_needed > 0 and not p.done_repeat:
-        #             p.window_bring_to_front(p.window_hwnd)
-        #             p.type.run(p.window_hwnd, [])
-        #             p.repeat_needed -= 1
-        #             p.window_bring_to_back(p.window_hwnd)
-        #         elif p.repeat_needed <= 0 and not p.done_repeat:
-        #             p.done_repeat = True
-        #             self.print_info(f'{p.username} is done.')
-        #     self.print_info(f"Rep count: {re}/{max_repeat} "
-        #                     f"Percentage: {(re / max_repeat):.2f} "
-        #                     f"Time left: {((47.5 * (max_repeat - re)) / 60 / 60):.2f} hours")
-        #
-        #     time.sleep(random.randint(45, 50))
+        for q1 in u_list:
+            q1.window_bring_to_front(q1.window_hwnd)
+            q1.type.reset_interface(q1.window_hwnd, product)
+            q1.window_bring_to_back(q1.window_hwnd)
+
+        max_repeat = -1
+        for q2 in u_list:
+            if q2.repeat_needed > max_repeat:
+                max_repeat = q2.repeat_needed
+                self.print_info(f'{q2.repeat_needed} is bigger')
+        self.print_info(f'Repeat counter: {max_repeat}')
+
+        for re in range(max_repeat):
+            for p in u_list:
+                if p.repeat_needed > 0 and not p.done_repeat:
+                    p.window_bring_to_front(p.window_hwnd)
+                    p.type.run(p.window_hwnd, [])
+                    p.repeat_needed -= 1
+                    p.window_bring_to_back(p.window_hwnd)
+                elif p.repeat_needed <= 0 and not p.done_repeat:
+                    p.done_repeat = True
+                    self.print_info(f'{p.username} is done.')
+            self.print_info(f"Rep count: {re}/{max_repeat} "
+                            f"Percentage: {(re / max_repeat):.2f} "
+                            f"Time left: {((47.5 * (max_repeat - re)) / 60 / 60):.2f} hours")
+
+            time.sleep(random.randint(45, 50))
 
 
 if __name__ == "__main__":
