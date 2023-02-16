@@ -19,6 +19,7 @@ class SmithingBot(AbstractBot):
         ANVIL_1 = [3679, 741]
         RUNE_BAR_2 = [3210, 423]
         BRONZE_BAR_2 = [3160, 372]
+        MITHRIL_BAR_2 = [3314, 375]
         ADAMANT_BAR_2 = [3159, 429]
         IRON_BAR_2 = [3208, 373]
         BLANK_SPOT_INTERFACE_3 = [3557, 473]

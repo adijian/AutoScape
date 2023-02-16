@@ -7,7 +7,7 @@ from Commands import Commands
 
 
 class User(Commands):
-    def __init__(self, username, password, bot_type: AbstractBot, repeat_needed):
+    def __init__(self, username, password, bot_type: AbstractBot, repeat_needed, args=None, args2=None):
         Commands.__init__(self)
         self.username = username
         self.password = password
@@ -15,6 +15,12 @@ class User(Commands):
         self.window_hwnd = ''
         self.repeat_needed = repeat_needed
         self.done_repeat = False
+        if args is None:
+            self.args = []
+        self.args = args
+        if args2 is None:
+            self.args2 = []
+        self.args2 = args2
 
     def get_window(self):
         self.window_hwnd = self.get_list_of_windows()[0]

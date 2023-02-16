@@ -31,7 +31,6 @@ class FiremakingIncenseBot(AbstractBot):
         self.click_coordinates(self.coordinates.LOG_2.value)
         time.sleep(2)
         pyautogui.press('space')
-        # self.window_bring_to_back(window)
         time.sleep(2)
 
     def reset_interface(self, window, project_coordinates):
