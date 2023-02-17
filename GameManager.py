@@ -16,8 +16,8 @@ class GameManager(BotManager, Commands):
         USERNAME = [1090, 414]
         PASSWORD = [1091, 506]
         LOGIN = [958, 553]
-        WORLD_FREE_1 = [1167, 533]
-        WORLD_MEMBER_1 = [1232, 531]
+        WORLD_FREE_1 = 'Free'
+        WORLD_MEMBER_1 = 'Member'
 
     def __init__(self):
         BotManager.__init__(self)
@@ -25,28 +25,32 @@ class GameManager(BotManager, Commands):
         self._resolution = self.SetUp.RESOLUTION_1
         self.coordinates = self.Coordinates
         self.list_of_user_objects_1 = [
-            # User(username="adijrunescape@gmail.com", password="deejian8",
-            #      bot_type=self.type_of_bots.SMITHING, repeat_needed=int(9718), hide_window=False,
-            #      args=[self.type_of_bots.SMITHING.coordinates.RUNE_BAR_2.value,
-            #            self.type_of_bots.SMITHING.optional_coordinates.ARROWS.value],
-            #      world_args=[self.Coordinates.WORLD_MEMBER_1.value])
-            # ,
-            # User(username="runescapejian003@googlemail.com", password="deejian8",
-            #      bot_type=self.type_of_bots.FIREMAKING_INCENSE, repeat_needed=int(18890 / 28), hide_window=True,
-            #      world_args=[self.Coordinates.WORLD_FREE_1.value])
-            # ,
-            # User(username="runescapejian005@gmail.com", password="deejian8",
-            #      bot_type=self.type_of_bots.HERBLORE_UNF_BOT, repeat_needed=int(430 / 14), hide_window=False,
-            #      world_args=[self.Coordinates.WORLD_FREE_1.value])
-            # ,
-            # User(username="runescapejian005@googlemail.com", password="deejian8",
-            #      bot_type=self.type_of_bots.HERBLORE_UNF_BOT, repeat_needed=int(250 / 14), hide_window=False,
-            #      world_args=[self.Coordinates.WORLD_FREE_1.value])
-            # ,
-            User(username="runescapejian006@gmail.com", password="deejian8",
-                 bot_type=self.type_of_bots.MINING_BOT, repeat_needed=int(1000 / 25), hide_window=False,  # Start at the copper ore in burthrope mine 3rd from interance
-                 args2=[0],
+            User(username="adijrunescape@gmail.com", password="deejian8",
+                 bot_type=self.type_of_bots.SMITHING, repeat_needed=int(9649), hide_window=True,
+                 args=[self.type_of_bots.SMITHING.coordinates.RUNE_BAR_2.value,
+                       self.type_of_bots.SMITHING.optional_coordinates.ARROWS.value],
+                 world_args=[self.Coordinates.WORLD_MEMBER_1.value])
+            ,
+            User(username="runescapejian005@gmail.com", password="deejian8",
+                 bot_type=self.type_of_bots.HERBLORE_UNF_BOT, repeat_needed=int(1508 / 14), hide_window=True,
                  world_args=[self.Coordinates.WORLD_FREE_1.value])
+            ,
+            User(username="runescapejian005@googlemail.com", password="deejian8",
+                 bot_type=self.type_of_bots.HERBLORE_UNF_BOT, repeat_needed=int(500 / 14), hide_window=True,
+                 world_args=[self.Coordinates.WORLD_FREE_1.value])
+
+            # User(username="runescapejian003@googlemail.com", password="deejian8",
+            #      bot_type=self.type_of_bots.FIREMAKING_INCENSE, repeat_needed=int(13110 / 28), hide_window=True,
+            #      world_args=[self.Coordinates.WORLD_FREE_1.value])
+            # ,
+            # ,
+            # User(username="runescapejian006@gmail.com", password="deejian8",
+            #      bot_type=self.type_of_bots.MINING_IRON_BOT, repeat_needed=int(400), hide_window=True,  # Start at the iron ore in burthrope mine 3rd from interance
+            #      args2=[0],
+            #      world_args=[self.Coordinates.WORLD_FREE_1.value])
+
+
+
             # ,
             # User(username="runescapejian006@googlemail.com", password="deejian8",
             #      bot_type=self.type_of_bots.HERBLORE_UNF_BOT, repeat_needed=int(430 / 14), hide_window=False,
@@ -88,7 +92,6 @@ class GameManager(BotManager, Commands):
                 if p.repeat_needed > 0 and not p.done_repeat:
                     p.window_bring_to_front(p.window_hwnd)
                     p.type.run(p.window_hwnd, p.args2)
-                    print(p.args2)
                     p.repeat_needed -= 1
                     p.window_bring_to_back(p.window_hwnd)
                 elif p.repeat_needed <= 0 and not p.done_repeat:

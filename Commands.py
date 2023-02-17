@@ -61,7 +61,6 @@ class ImageDetectionManager:
         counter = 0
         for _ in pyautogui.locateAllOnScreen(image=image, confidence=0.94, grayscale=True):
             counter += 1
-            print(_)
         return counter
 
 

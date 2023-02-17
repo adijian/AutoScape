@@ -1,6 +1,7 @@
 import time
 
 import keyboard
+import pyautogui
 
 from AbstractBot import AbstractBot
 from Commands import Commands
@@ -39,6 +40,7 @@ class User(Commands):
         self.window_bring_to_back(self.window_hwnd)
 
     def login(self, coordinates_username, coordinates_password, coordinates_login, resolution):
+        time.sleep(10)
         self.window_set_pos(self.window_hwnd, resolution)
         self.window_to_front()
         time.sleep(2)
@@ -52,11 +54,9 @@ class User(Commands):
         time.sleep(4)
         self.print_info(f"The user {self.username} has logged in")
 
-    def choose_world(self, coordinates_world1):
-        time.sleep(20)
-        self.click_coordinates(coordinates_world1)
-        time.sleep(3)
-        self.click_coordinates(coordinates_world1)
+    def choose_world(self, free_or_member):
+        time.sleep(10)
+        pyautogui.press('2') if free_or_member == 'Member' else pyautogui.press('1')
         time.sleep(3)
         self.print_info(f"The user {self.username} has chose world")
 
