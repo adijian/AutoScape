@@ -16,18 +16,18 @@ class SmithingBot(AbstractBot):
         self.optional_coordinates = self.OptionalCoordinates
 
     class Coordinates(Enum):
-        ANVIL_1 = [3679, 741]
-        RUNE_BAR_2 = [3210, 423]
-        BRONZE_BAR_2 = [3160, 372]
-        MITHRIL_BAR_2 = [3314, 375]
-        ADAMANT_BAR_2 = [3159, 429]
-        IRON_BAR_2 = [3208, 373]
-        BLANK_SPOT_INTERFACE_3 = [3557, 473]
+        ANVIL_1 = [1089, 740]
+        RUNE_BAR_2 = [652, 423]
+        BRONZE_BAR_2 = [601, 372]
+        MITHRIL_BAR_2 = [754, 375]
+        ADAMANT_BAR_2 = [598, 429]
+        IRON_BAR_2 = [651, 373]
+        BLANK_SPOT_INTERFACE_3 = [998, 473]
 
     class OptionalCoordinates(Enum):
-        ARROWS = [3410, 606]
-        BOLTS = [3509, 602]
-        START_PROJECT = [3670, 745]
+        ARROWS = [845, 606]
+        BOLTS = [903, 602]
+        START_PROJECT = [1099, 745]
 
     def get_coordinates(self):
         return self.coordinates
@@ -50,7 +50,7 @@ class SmithingBot(AbstractBot):
             keyboard.press_and_release('right')
             time.sleep(0.2)
         time.sleep(5)
-        win32api.mouse_event(win32con.MOUSEEVENTF_WHEEL, 3557, 473, 100000, 0)
+        win32api.mouse_event(win32con.MOUSEEVENTF_WHEEL, 998, 473, 100000, 0)
         time.sleep(2)
         self.click_coordinates(self.optional_coordinates.START_PROJECT.value)
         time.sleep(2)
@@ -58,7 +58,7 @@ class SmithingBot(AbstractBot):
         time.sleep(2)
         self.click_coordinates(self.coordinates.BLANK_SPOT_INTERFACE_3.value)
         time.sleep(2)
-        win32api.mouse_event(win32con.MOUSEEVENTF_WHEEL, 3557, 473, -100000, 0)
+        win32api.mouse_event(win32con.MOUSEEVENTF_WHEEL, 998, 473, -100000, 0)
         time.sleep(2)
         self.click_coordinates(project_coordinates[1])
         time.sleep(2)

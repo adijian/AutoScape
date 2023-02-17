@@ -9,32 +9,56 @@ from User import User
 
 class GameManager(BotManager, Commands):
     class SetUp(Enum):
-        RESOLUTION = [2552, -8, 1920, 1080]
+        RESOLUTION_1 = [-8, -8, 1920, 1080]
+        RESOLUTION_2 = [2552, -8, 1920, 1080]
 
     class Coordinates(Enum):
-        USERNAME = [3395, 413]
-        PASSWORD = [3387, 507]
-        LOGIN = [3509, 554]
-        WORLD_1 = [3729, 529]
-        WORLD_2 = [3727, 577]
+        USERNAME = [1090, 414]
+        PASSWORD = [1091, 506]
+        LOGIN = [958, 553]
+        WORLD_FREE_1 = [1167, 533]
+        WORLD_MEMBER_1 = [1232, 531]
 
     def __init__(self):
         BotManager.__init__(self)
         Commands.__init__(self)
+        self._resolution = self.SetUp.RESOLUTION_1
         self.coordinates = self.Coordinates
         self.list_of_user_objects_1 = [
-            User("adijrunescape@gmail.com", "deejian8", self.type_of_bots.SMITHING, int(418), [self.type_of_bots.SMITHING.coordinates.RUNE_BAR_2.value,
-                                                                                               self.type_of_bots.SMITHING.optional_coordinates.ARROWS.value])
+            # User(username="adijrunescape@gmail.com", password="deejian8",
+            #      bot_type=self.type_of_bots.SMITHING, repeat_needed=int(9718), hide_window=False,
+            #      args=[self.type_of_bots.SMITHING.coordinates.RUNE_BAR_2.value,
+            #            self.type_of_bots.SMITHING.optional_coordinates.ARROWS.value],
+            #      world_args=[self.Coordinates.WORLD_MEMBER_1.value])
             # ,
-            # User("runescapejian003@googlemail.com", "deejian8", self.type_of_bots.FIREMAKING_INCENSE, int(30344 / 28))
+            # User(username="runescapejian003@googlemail.com", password="deejian8",
+            #      bot_type=self.type_of_bots.FIREMAKING_INCENSE, repeat_needed=int(18890 / 28), hide_window=True,
+            #      world_args=[self.Coordinates.WORLD_FREE_1.value])
+            # ,
+            # User(username="runescapejian005@gmail.com", password="deejian8",
+            #      bot_type=self.type_of_bots.HERBLORE_UNF_BOT, repeat_needed=int(430 / 14), hide_window=False,
+            #      world_args=[self.Coordinates.WORLD_FREE_1.value])
+            # ,
+            # User(username="runescapejian005@googlemail.com", password="deejian8",
+            #      bot_type=self.type_of_bots.HERBLORE_UNF_BOT, repeat_needed=int(250 / 14), hide_window=False,
+            #      world_args=[self.Coordinates.WORLD_FREE_1.value])
+            # ,
+            User(username="runescapejian006@gmail.com", password="deejian8",
+                 bot_type=self.type_of_bots.MINING_BOT, repeat_needed=int(1000 / 25), hide_window=False,  # Start at the copper ore in burthrope mine 3rd from interance
+                 args2=[0],
+                 world_args=[self.Coordinates.WORLD_FREE_1.value])
+            # ,
+            # User(username="runescapejian006@googlemail.com", password="deejian8",
+            #      bot_type=self.type_of_bots.HERBLORE_UNF_BOT, repeat_needed=int(430 / 14), hide_window=False,
+            #      world_args=[self.Coordinates.WORLD_FREE_1.value])
         ]
 
     def standard_start(self, u_list):
         self.stop_runescape()
         for q in u_list:
             q.start_game()
-            q.login(self.coordinates.USERNAME.value, self.coordinates.PASSWORD.value, self.coordinates.LOGIN.value, self.SetUp.RESOLUTION.value)
-            q.choose_world(self.coordinates.WORLD_1.value, self.coordinates.WORLD_2.value)
+            q.login(self.coordinates.USERNAME.value, self.coordinates.PASSWORD.value, self.coordinates.LOGIN.value, self.SetUp.RESOLUTION_1.value)
+            q.choose_world(q.world_args[0])
             q.window_bring_to_back(q.window_hwnd)
             self.print_info(q.repeat_needed)
 
@@ -46,22 +70,25 @@ class GameManager(BotManager, Commands):
             q1.window_bring_to_back(q1.window_hwnd)
 
         max_repeat = -1
+        max_repeat = 1000
         for q2 in u_list:
-            if q2.repeat_needed > max_repeat:
+            # if q2.repeat_needed > max_repeat:
+            if q2.repeat_needed < max_repeat:
                 max_repeat = q2.repeat_needed
                 self.print_info(f'{q2.repeat_needed} is bigger')
         self.print_info(f'Repeat counter: {max_repeat}')
 
-        min_rep, max_rep = 50, 70
+        min_rep, max_rep = 60, 80
         average_rep = (min_rep + max_rep) / 2
-        if max_repeat > (average_rep * 6):
-            max_repeat = average_rep * 6
+        if max_repeat > (6 * 60) / (average_rep / 60):
+            max_repeat = int((6 * 60) / (average_rep / 60))
 
-        for re in range(int(max_repeat)):
+        for re in range(max_repeat):
             for p in u_list:
                 if p.repeat_needed > 0 and not p.done_repeat:
                     p.window_bring_to_front(p.window_hwnd)
                     p.type.run(p.window_hwnd, p.args2)
+                    print(p.args2)
                     p.repeat_needed -= 1
                     p.window_bring_to_back(p.window_hwnd)
                 elif p.repeat_needed <= 0 and not p.done_repeat:
@@ -80,7 +107,7 @@ if __name__ == "__main__":
     game_manager = GameManager()
     # game_manager.find_coordinates()
 
-    game_manager.standard_start(game_manager.list_of_user_objects_1)
-    # game_manager.custom_start(game_manager.list_of_user_objects_1)
+    # game_manager.standard_start(game_manager.list_of_user_objects_1)
+    game_manager.custom_start(game_manager.list_of_user_objects_1)
 
     # game_manager.stop_runescape()

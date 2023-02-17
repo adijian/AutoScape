@@ -57,9 +57,9 @@ class ClickCommander(PrintsCommander):
 
 class ImageDetectionManager:
     @staticmethod
-    def locateImageOnScreen(self, image):
+    def locateImageOnScreen(image):
         counter = 0
-        for _ in pyautogui.locateAllOnScreen(self, image(image), confidence=0.94, grayscale=True):
+        for _ in pyautogui.locateAllOnScreen(image=image, confidence=0.94, grayscale=True):
             counter += 1
             print(_)
         return counter
@@ -106,6 +106,7 @@ class WindowManager(PrintsCommander):
             win32gui.MoveWindow(hwnd, resolution[0], resolution[1], resolution[2], resolution[3], True)
             print(win32gui.GetWindowText(hwnd), "hwnd", hwnd, "rect", rect)
         except Exception as e:
+            self.window_bring_to_front(hwnd)
             rect = win32gui.GetWindowRect(hwnd)
             win32gui.MoveWindow(hwnd, resolution[0], resolution[1], resolution[2], resolution[3], True)
             print(win32gui.GetWindowText(hwnd), "hwnd", hwnd, "rect", rect)

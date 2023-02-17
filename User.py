@@ -7,7 +7,7 @@ from Commands import Commands
 
 
 class User(Commands):
-    def __init__(self, username, password, bot_type: AbstractBot, repeat_needed, args=None, args2=None):
+    def __init__(self, username, password, bot_type: AbstractBot, repeat_needed, hide_window=True, args=None, args2=None, world_args=None):
         Commands.__init__(self)
         self.username = username
         self.password = password
@@ -15,12 +15,13 @@ class User(Commands):
         self.window_hwnd = ''
         self.repeat_needed = repeat_needed
         self.done_repeat = False
-        if args is None:
-            self.args = []
+        if args is None: self.args = []
         self.args = args
-        if args2 is None:
-            self.args2 = []
+        if args2 is None: self.args2 = []
         self.args2 = args2
+        if world_args is None: self.world_args = []
+        self.world_args = world_args
+        self.hide_window = hide_window
 
     def get_window(self):
         self.window_hwnd = self.get_list_of_windows()[0]
@@ -51,11 +52,14 @@ class User(Commands):
         time.sleep(4)
         self.print_info(f"The user {self.username} has logged in")
 
-    def choose_world(self, coordinates_world1, coordinates_world2):
+    def choose_world(self, coordinates_world1):
+        time.sleep(20)
         self.click_coordinates(coordinates_world1)
-        self.click_coordinates(coordinates_world2)
-        time.sleep(2)
+        time.sleep(3)
         self.click_coordinates(coordinates_world1)
-        self.click_coordinates(coordinates_world2)
-        time.sleep(4)
+        time.sleep(3)
         self.print_info(f"The user {self.username} has chose world")
+
+    def window_bring_to_back(self, hwnd):
+        if self.hide_window:
+            super().window_bring_to_back(self.window_hwnd)

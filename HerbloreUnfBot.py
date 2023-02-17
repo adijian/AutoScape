@@ -10,15 +10,14 @@ import win32con
 from AbstractBot import AbstractBot
 
 
-class FiremakingIncenseBot(AbstractBot):
+class HerbloreUnfBot(AbstractBot):
     def __init__(self):
         super().__init__()
         self.coordinates = self.Coordinates
 
     class Coordinates(Enum):
         BANK_1 = [959, 131]
-        LOG_2 = [1792, 681]
-        STICKS_3 = [1109, 540]
+        VIAL_2 = [1792, 681]
 
     def run(self, window, project_coordinates):
         time.sleep(2)
@@ -26,7 +25,7 @@ class FiremakingIncenseBot(AbstractBot):
         time.sleep(2)
         pyautogui.press('1')
         time.sleep(2)
-        self.click_coordinates(self.coordinates.LOG_2.value)
+        self.click_coordinates(self.coordinates.VIAL_2.value)
         time.sleep(2)
         pyautogui.press('space')
         time.sleep(2)
@@ -38,14 +37,6 @@ class FiremakingIncenseBot(AbstractBot):
         keyboard.release('up')
         time.sleep(2)
         win32api.mouse_event(win32con.MOUSEEVENTF_WHEEL, 998, 473, 100000, 0)
-        time.sleep(2)
-        self.click_coordinates(self.coordinates.BANK_1.value)
-        time.sleep(2)
-        pyautogui.press('1')
-        time.sleep(2)
-        self.click_coordinates(self.coordinates.LOG_2.value)
-        time.sleep(2)
-        self.click_coordinates(self.coordinates.STICKS_3.value)
         time.sleep(2)
 
         self.print_info(f"Reset window {window} to position")

@@ -2,6 +2,8 @@ from Demos.security.security_enums import Enum
 
 from FiremakingIncenseBot import FiremakingIncenseBot
 from HerbloreBot import HerbloreBot
+from HerbloreUnfBot import HerbloreUnfBot
+from MiningBot import MiningBot
 from SmithingBot import SmithingBot
 from BronzeBarBot import BronzeBarBot
 
@@ -15,3 +17,5 @@ class BotManager:
         HERBLORE = HerbloreBot()
         FIREMAKING_INCENSE = FiremakingIncenseBot()
         BRONZE_BAR_BOT = BronzeBarBot()
+        HERBLORE_UNF_BOT = HerbloreUnfBot()
+        MINING_BOT = MiningBot()
