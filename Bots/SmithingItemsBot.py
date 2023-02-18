@@ -1,4 +1,3 @@
-import random
 import time
 from enum import Enum
 
@@ -6,10 +5,10 @@ import keyboard
 import win32api
 import win32con
 
-from AbstractBot import AbstractBot
+from Bots.Abstract.AbstractBot import AbstractBot
 
 
-class SmithingBot(AbstractBot):
+class SmithingItemsBot(AbstractBot):
     def __init__(self):
         super().__init__()
         self.coordinates = self.Coordinates

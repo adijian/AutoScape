@@ -3,12 +3,12 @@ import time
 import keyboard
 import pyautogui
 
-from AbstractBot import AbstractBot
+from Bots.Abstract.AbstractBot import AbstractBot
 from Commands import Commands
 
 
 class User(Commands):
-    def __init__(self, username, password, bot_type: AbstractBot, repeat_needed, hide_window=True, args=None, args2=None, world_args=None):
+    def __init__(self, username, password, bot_type: AbstractBot, repeat_needed, hide_window=True, set_up_args=None, run_time_args=None, world_args=None):
         Commands.__init__(self)
         self.username = username
         self.password = password
@@ -16,10 +16,10 @@ class User(Commands):
         self.window_hwnd = ''
         self.repeat_needed = repeat_needed
         self.done_repeat = False
-        if args is None: self.args = []
-        self.args = args
-        if args2 is None: self.args2 = []
-        self.args2 = args2
+        if set_up_args is None: self.set_up_args = []
+        self.set_up_args = set_up_args
+        if run_time_args is None: self.run_time_args = []
+        self.run_time_args = run_time_args
         if world_args is None: self.world_args = []
         self.world_args = world_args
         self.hide_window = hide_window

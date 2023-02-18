@@ -2,7 +2,7 @@ import random
 import time
 from enum import Enum
 
-from BotManager import BotManager
+from Bots.Abstract.BotManager import BotManager
 from Commands import Commands
 from User import User
 
@@ -26,34 +26,28 @@ class GameManager(BotManager, Commands):
         self.coordinates = self.Coordinates
         self.list_of_user_objects_1 = [
             User(username="adijrunescape@gmail.com", password="deejian8",
-                 bot_type=self.type_of_bots.SMITHING, repeat_needed=int(9649), hide_window=True,
-                 args=[self.type_of_bots.SMITHING.coordinates.RUNE_BAR_2.value,
-                       self.type_of_bots.SMITHING.optional_coordinates.ARROWS.value],
+                 bot_type=self.type_of_bots.SMITHING_ITEMS, repeat_needed=int(19575), hide_window=True,
+                 set_up_args=[self.type_of_bots.SMITHING_ITEMS.coordinates.RUNE_BAR_2.value,
+                              self.type_of_bots.SMITHING_ITEMS.optional_coordinates.ARROWS.value],
                  world_args=[self.Coordinates.WORLD_MEMBER_1.value])
             ,
+            # copper
             User(username="runescapejian005@gmail.com", password="deejian8",
-                 bot_type=self.type_of_bots.HERBLORE_UNF_BOT, repeat_needed=int(1508 / 14), hide_window=True,
+                 bot_type=self.type_of_bots.HERBLORE_UNF_BOT, repeat_needed=int(1434 / 14), hide_window=True,
                  world_args=[self.Coordinates.WORLD_FREE_1.value])
             ,
+            # incense
             User(username="runescapejian005@googlemail.com", password="deejian8",
-                 bot_type=self.type_of_bots.HERBLORE_UNF_BOT, repeat_needed=int(500 / 14), hide_window=True,
+                 bot_type=self.type_of_bots.HERBLORE_UNF_BOT, repeat_needed=int(436 / 14), hide_window=True,
                  world_args=[self.Coordinates.WORLD_FREE_1.value])
 
-            # User(username="runescapejian003@googlemail.com", password="deejian8",
-            #      bot_type=self.type_of_bots.FIREMAKING_INCENSE, repeat_needed=int(13110 / 28), hide_window=True,
-            #      world_args=[self.Coordinates.WORLD_FREE_1.value])
             # ,
+            # User(username="runescapejian003@googlemail.com", password="deejian8",
+            #      bot_type=self.type_of_bots.HERBLORE_UNF_BOT, repeat_needed=int(1000 / 14), hide_window=True,
+            #      world_args=[self.Coordinates.WORLD_FREE_1.value])
             # ,
             # User(username="runescapejian006@gmail.com", password="deejian8",
-            #      bot_type=self.type_of_bots.MINING_IRON_BOT, repeat_needed=int(400), hide_window=True,  # Start at the iron ore in burthrope mine 3rd from interance
-            #      args2=[0],
-            #      world_args=[self.Coordinates.WORLD_FREE_1.value])
-
-
-
-            # ,
-            # User(username="runescapejian006@googlemail.com", password="deejian8",
-            #      bot_type=self.type_of_bots.HERBLORE_UNF_BOT, repeat_needed=int(430 / 14), hide_window=False,
+            #      bot_type=self.type_of_bots.HERBLORE_UNF_BOT, repeat_needed=int(1000 / 14), hide_window=True,
             #      world_args=[self.Coordinates.WORLD_FREE_1.value])
         ]
 
@@ -70,7 +64,7 @@ class GameManager(BotManager, Commands):
         self.standard_start(u_list)
         for q1 in u_list:
             q1.window_bring_to_front(q1.window_hwnd)
-            q1.type.reset_interface(q1.window_hwnd, q1.args)
+            q1.type.reset_interface(q1.window_hwnd, q1.set_up_args)
             q1.window_bring_to_back(q1.window_hwnd)
 
         max_repeat = -1
@@ -83,9 +77,9 @@ class GameManager(BotManager, Commands):
         self.print_info(f'Repeat counter: {max_repeat}')
 
         min_rep, max_rep = 60, 80
-        average_rep = (min_rep + max_rep) / 2
-        if max_repeat > (6 * 60) / (average_rep / 60):
-            max_repeat = int((6 * 60) / (average_rep / 60))
+        average_rep = ((min_rep + max_rep) / 2) / 60
+        max_hour = 6 * 60
+        if max_repeat > max_hour / average_rep: max_repeat = int(max_hour / average_rep)
 
         for re in range(max_repeat):
             for p in u_list:

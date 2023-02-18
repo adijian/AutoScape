@@ -1,13 +1,11 @@
-import random
 import time
 from enum import Enum
 
 import keyboard
-import pyautogui
 import win32api
 import win32con
 
-from AbstractBot import AbstractBot
+from Bots.Abstract.AbstractBot import AbstractBot
 
 
 class MiningCopperBot(AbstractBot):
@@ -30,7 +28,7 @@ class MiningCopperBot(AbstractBot):
     def run(self, window, project_coordinates):
         time.sleep(2)
         if project_coordinates[0] != 0: self.reset_interface(window, project_coordinates)
-        iron = self.locateImageOnScreen(r'Images\Iron_Ore.png')
+        iron = self.locateImageOnScreen(r'aImages\Iron_Ore.png')
         self.print_info(f'Found iron: {iron}')
         if iron > 17:
             time.sleep(2)

@@ -1,6 +1,6 @@
 from abc import abstractmethod
 
-from Commands import Commands
+from Main.Commands import Commands
 
 
 class AbstractBot(Commands):

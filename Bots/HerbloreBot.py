@@ -4,7 +4,7 @@ import time
 import keyboard
 import pyautogui
 
-from AbstractBot import AbstractBot
+from Bots.Abstract.AbstractBot import AbstractBot
 
 
 class HerbloreBot(AbstractBot):

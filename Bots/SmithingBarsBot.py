@@ -1,4 +1,3 @@
-import random
 import time
 from enum import Enum
 
@@ -7,10 +6,10 @@ import pyautogui
 import win32api
 import win32con
 
-from AbstractBot import AbstractBot
+from Bots.Abstract.AbstractBot import AbstractBot
 
 
-class BronzeBarBot(AbstractBot):
+class SmithingBarsBot(AbstractBot):
     def __init__(self):
         super().__init__()
         self.coordinates = self.Coordinates
